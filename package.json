@@ -1,0 +1,19 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Recipe application",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Alireza Raei",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "sass": "^1.71.1"
+  }
+}

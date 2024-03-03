@@ -1,5 +1,3 @@
-import icons from 'url:../../img/icons.svg'; // Parcel 2
-
 import View from './view.js';
 
 class ResultsView extends View {
@@ -25,13 +23,6 @@ class ResultsView extends View {
 
   _generateMarkup() {
     return this._data.map(this._generateMarkupPreview).join('');
-  }
-
-  render(data) {
-    this._data = data;
-    const markup = this._generateMarkup();
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 }
 

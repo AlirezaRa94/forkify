@@ -1,16 +1,16 @@
 import icons from 'url:../../img/icons.svg'; // Parcel 2
 
 class resultsView {
-  #parentElement = document.querySelector('.results');
-  #data;
-  #errorMessage = 'No recipes found for your query. Please try again!';
-  #message = '';
+  _parentElement = document.querySelector('.results');
+  _data;
+  _errorMessage = 'No recipes found for your query. Please try again!';
+  _message = '';
 
-  #clear() {
-    this.#parentElement.innerHTML = '';
+  _clear() {
+    this._parentElement.innerHTML = '';
   }
 
-  #generateMarkupPreview(result) {
+  _generateMarkupPreview(result) {
     return `
       <li class="preview">
         <a class="preview__link preview__link--active" href="#${result.id}">
@@ -31,15 +31,15 @@ class resultsView {
     `;
   }
 
-  #generateMarkup() {
-    return this.#data.map(this.#generateMarkupPreview).join('');
+  _generateMarkup() {
+    return this._data.map(this._generateMarkupPreview).join('');
   }
 
   render(data) {
-    this.#data = data;
-    const markup = this.#generateMarkup();
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._data = data;
+    const markup = this._generateMarkup();
+    this._clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 }
 

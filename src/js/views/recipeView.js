@@ -1,15 +1,12 @@
 import icons from 'url:../../img/icons.svg'; // Parcel 2
 import fracty from 'fracty';
 
-class RecipeView {
+import View from './view.js';
+
+class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
-  _data;
   _errorMessage = 'We could not find that recipe. Please try another one!';
   _message = '';
-
-  _clear() {
-    this._parentElement.innerHTML = '';
-  }
 
   _generateMarkupIngredient(ing) {
     return `
@@ -87,9 +84,7 @@ class RecipeView {
       <div class="recipe__ingredients">
         <h2 class="heading--2">Recipe ingredients</h2>
         <ul class="recipe__ingredient-list">
-          ${this._data.ingredients
-            .map(ing => this._generateMarkupIngredient(ing))
-            .join('')}
+          ${this._data.ingredients.map(this._generateMarkupIngredient).join('')}
         </ul>
       </div>
 
@@ -118,53 +113,6 @@ class RecipeView {
 
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
-  }
-
-  renderSpinner() {
-    const markup = `
-      <div class="spinner">
-        <svg>
-          <use href="${icons}#icon-loader"></use>
-        </svg>
-      </div>
-    `;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  renderError(message = this._errorMessage) {
-    const markup = `
-      <div class="error">
-        <div>
-          <svg>
-            <use href="${icons}#icon-alert-triangle"></use>
-          </svg>
-        </div>
-        <p>${message}</p>
-      </div>
-    `;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  renderMessage(message = this._message) {
-    const markup = `
-      <div class="message">
-        <div>
-          <svg>
-            <use href="${icons}#icon-smile"></use>
-          </svg>
-        </div>
-        <p>${message}</p>
-      </div>
-    `;
-  }
-
-  render(data) {
-    this._data = data;
-    const markup = this._generateMarkup();
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 }
 

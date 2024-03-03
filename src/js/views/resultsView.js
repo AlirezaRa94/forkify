@@ -1,14 +1,11 @@
 import icons from 'url:../../img/icons.svg'; // Parcel 2
 
-class resultsView {
+import View from './view.js';
+
+class ResultsView extends View {
   _parentElement = document.querySelector('.results');
-  _data;
   _errorMessage = 'No recipes found for your query. Please try again!';
   _message = '';
-
-  _clear() {
-    this._parentElement.innerHTML = '';
-  }
 
   _generateMarkupPreview(result) {
     return `
@@ -43,4 +40,4 @@ class resultsView {
   }
 }
 
-export default new resultsView();
+export default new ResultsView();

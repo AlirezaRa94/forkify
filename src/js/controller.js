@@ -11,13 +11,13 @@ const controlRecipes = async function () {
     const id = window.location.hash.slice(1);
     if (!id) return;
 
-    // Rendering spinner
+    // Render spinner
     recipeView.renderSpinner();
 
-    // Loading recipe
+    // Load recipe
     await model.loadRecipe(id);
 
-    // Rendering recipe
+    // Render recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
     recipeView.renderError();
@@ -29,6 +29,9 @@ const controlSearchRecipes = async function () {
     // Get search query
     const query = searchView.getQuery();
     if (!query) return;
+
+    // Render spinner
+    resultsView.renderSpinner();
 
     // Load search results
     await model.searchRecipes(query);

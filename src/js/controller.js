@@ -42,7 +42,7 @@ const controlSearchRecipes = async function () {
     await model.searchRecipes(query);
 
     // Render results
-    resultsView.render(model.getSearchResultsPage(1));
+    resultsView.render(model.getSearchResultsPage());
 
     // Render initial pagination buttons
     paginationView.render(model.state.search);

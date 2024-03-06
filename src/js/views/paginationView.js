@@ -4,46 +4,47 @@ import icons from 'url:../../img/icons.svg';
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
 
+  _generateMarkupNext(page) {
+    return `
+      <button class="btn--inline pagination__btn--next" data-goto="${page}">
+        <span>Page ${page}</span>
+        <svg class="search__icon">
+          <use href="${icons}#icon-arrow-right"></use>
+        </svg>
+      </button> 
+    `;
+  }
+
+  _generateMarkupPrev(page) {
+    return `
+      <button class="btn--inline pagination__btn--prev" data-goto="${page}">
+        <svg class="search__icon">
+          <use href="${icons}#icon-arrow-left"></use>
+        </svg>
+        <span>Page ${page}</span>
+      </button>
+    `;
+  }
+
   _generateMarkup() {
     const curPage = this._data.page;
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPerPage
     );
 
-    const nextButton = `
-      <button class="btn--inline pagination__btn--next" data-goto="${
-        curPage + 1
-      }">
-        <span>Page ${curPage + 1}</span>
-        <svg class="search__icon">
-          <use href="${icons}#icon-arrow-right"></use>
-        </svg>
-      </button> 
-    `;
-    const previousButton = `
-      <button class="btn--inline pagination__btn--prev" data-goto="${
-        curPage - 1
-      }">
-        <svg class="search__icon">
-          <use href="${icons}#icon-arrow-left"></use>
-        </svg>
-        <span>Page ${curPage - 1}</span>
-      </button>
-    `;
-
     // Page 1, and there are other pages
     if (curPage === 1 && numPages > 1) {
-      return nextButton;
+      return this._generateMarkupNext(curPage + 1);
     }
     // Last page
     if (curPage === numPages && numPages > 1) {
-      return previousButton;
+      return this._generateMarkupPrev(curPage - 1);
     }
     // Other page
     if (curPage < numPages) {
       return `
-        ${previousButton}
-        ${nextButton}
+        ${this._generateMarkupPrev(curPage - 1)}
+        ${this._generateMarkupNext(curPage + 1)}
       `;
     }
     // Page 1, and there are NO other pages

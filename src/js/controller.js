@@ -97,10 +97,10 @@ const controlAddRecipe = function (newRecipe) {
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
-  searchView.addHandlerSearch(controlSearchRecipes);
-  paginationView.addHandlerClick(controlPagination);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
+  searchView.addHandlerSearch(controlSearchRecipes);
+  paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 

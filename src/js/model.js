@@ -24,6 +24,7 @@ const createRecipeObject = function (data) {
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
     bookmarked: state.bookmarks.some(rec => rec.id === recipe.id),
+    key: recipe.key ? recipe.key : null,
   };
 };
 
